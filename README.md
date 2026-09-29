@@ -97,8 +97,6 @@ GridControllerLive/
   LiveView.h/.cpp                  background grab thread + GDI rendering of frames
   FullSettingsView.h/.cpp          searchable parameter tree + type-specific editor
   prototype_main.cpp               WinMain, main window, camera connection, Quick Settings
-tools/
-  LiveMonitor.ps1                  optional: serves a live capture of the app window at http://localhost:8790/
 ```
 
 Build outputs (`bin/`, `obj/`) and Visual Studio's `.vs/` folder are not part of the
