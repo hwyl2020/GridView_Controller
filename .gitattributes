@@ -1,0 +1,5 @@
+# Keep Windows line endings for Visual Studio files in the checkout.
+* text=auto eol=crlf
+*.ico binary
+*.png binary
+*.jpg binary

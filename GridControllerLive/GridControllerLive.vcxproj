@@ -21,13 +21,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v145</PlatformToolset>
+    <PlatformToolset>$(DefaultPlatformToolset)</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v145</PlatformToolset>
+    <PlatformToolset>$(DefaultPlatformToolset)</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -87,4 +87,11 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <!-- Fail early with a clear message instead of hundreds of "ArenaApi.h not found" errors. -->
+  <Target Name="CheckArenaSdk" BeforeTargets="PrepareForBuild">
+    <Error Condition="'$(LUCID_DEV_ROOT)' == '' Or !Exists('$(LUCID_DEV_ROOT)\include\Arena\ArenaApi.h')"
+           Text="LUCID Arena SDK not found. Install the Arena SDK for Windows (x64), then restart Visual Studio so the LUCID_DEV_ROOT and LUCID_GENICAM_PATH environment variables are picked up. See README.md." />
+    <Error Condition="'$(LUCID_GENICAM_PATH)' == '' Or !Exists('$(LUCID_GENICAM_PATH)\library\CPP\include')"
+           Text="LUCID_GENICAM_PATH is not set or invalid. It is set by the Arena SDK installer; restart Visual Studio after installing. See README.md." />
+  </Target>
 </Project>
